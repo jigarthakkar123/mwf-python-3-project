@@ -1,0 +1,126 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+  </head>
+  <body>
+
+      <div id="wrapper" class="homepage-1"> <!-- wrapper -->
+              
+            
+      <div class="newest">
+          <div class="container">
+              <div class="newest-content">
+                  <div class="newest-tab">
+                      <div id="myTabContent" class="tab-content">
+                          <div role="tabpanel" class="tab-pane fade in active" id="1" aria-labelledby="cat-1">
+                              <div class="row clearfix">
+
+                                  {% for i in products %}
+
+                                  <div class="col-md-3 prdct-grid">
+                                      <div class="product-fade">
+									                       <div class="product-fade-wrap">
+                                          
+                                          <div class="item"><img src="{{i.product_image.url}}" alt="" class="img-responsive"></div>
+                                          
+                                          
+										                      <div class="product-fade-ct">
+                                            <div class="product-fade-control">
+                                             
+                                                <div class="to-right">
+                                                    <div id="product-control" class="owl-carousel owl-theme clearfix">
+                                                        <div class="item"><div class="bullets"></div></div>
+                                                        <div class="item"><div class="bullets"></div></div>
+                                                        <div class="item"><div class="bullets"></div></div>
+                                                        <div class="item"><div class="bullets"></div></div>
+                                                    </div>
+                                                </div>
+                                                  <div class="clearfix"></div>
+                                                  <a href="{% url 'product-details' pk=i.pk %}" class="btn btn-to-cart"><span class="bag"></span><span>Details</span><div class="clearfix"></div></a>
+                                              </div>
+            										            </div>
+									                       </div>
+                                      </div>
+                                      
+                                      <div class="product-name">
+                                          <a href="">{{i.product_name}}</a>
+                                      </div>
+                                     
+                                      <div class="product-price">
+                                          {{i.product_price}}
+                                      </div>
+                                  </div>
+                                  
+                                  {% endfor %}
+
+
+                              </div>
+                          </div>
+                          
+                          <div role="tabpanel" class="tab-pane fade" id="2" aria-labelledby="cat-2">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <p>....</p>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div role="tabpanel" class="tab-pane fade" id="3" aria-labelledby="cat-3">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <p>....</p>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                      </div>
+                      
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+              
+              
+              <div class="rec-blog">
+                  <div class="container">
+                      <div class="rec-blog-inner">
+                          <div class="blog-title">
+                              <span>The Blog</span>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-4 blog-ct">
+                                  <a href=""><img src="{% static 'images/rec-1.jpg' %}" alt="" class="img-responsive"></a>
+                                  <div class="blog-ct-title">
+                                      <a href="">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque !</a>
+                                      <span>May 11,2014</span>
+                                  </div>
+                              </div>
+                              <div class="col-md-4 blog-ct">
+                                  <a href=""><img src="{% static 'images/rec-2.jpg' %}" alt="" class="img-responsive"></a>
+                                  <div class="blog-ct-title">
+                                      <a href="">Voluptatem accusantium doloremque</a>
+                                      <span>May 11,2014</span>
+                                  </div>
+                              </div>
+                              <div class="col-md-4 blog-ct">
+                                  <a href=""><img src="{% static 'images/rec-3.jpg' %}" alt="" class="img-responsive"></a>
+                                  <div class="blog-ct-title">
+                                      <a href="">Voluptatem accusantium doloremque</a>
+                                      <span>May 11,2014</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+          </div> <!-- Content -->
+      </div> <!-- wrapper -->
+  </body>
+</html>
+{% endblock %}

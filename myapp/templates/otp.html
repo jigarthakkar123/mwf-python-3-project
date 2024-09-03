@@ -1,0 +1,58 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+
+      <div id="wrapper" class="homepage-1"> <!-- wrapper -->
+          
+          
+          <div id="content"> <!-- Content -->
+              <div class="page-title">
+                  <div class="container">
+                      <div class="page-title-inner">
+                          <h3>Verify OTP
+                          <div class="breadcumb"> <a href="">Home</a><span> / </span><span>Verify OTP</div>
+                          <div class="clearfix"></div>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="about-page">
+                  <div class="container">
+                      <div class="row">
+                         
+                          
+                          <div class="col-md-12 ct-form">
+                              <h3>Verify OTP</h3>
+                              {% if msg %}
+                                <b style="color: blue;">{{msg}}</b>
+                              {% endif %}
+                              <form class="contact-form" action="{% url 'verify-otp' %}" method="post">
+                                {% csrf_token %}
+                                  
+                                  <div class="form-group">
+                                      <label for="cf_email">Your OTP*</label>
+                                      <input type="text" class="form-control" name="otp" id="cf_email" placeholder="Enter OTP">
+                                  </div>
+
+                                  <button type="submit" class="btn btn-primary">Verify OTP</button>
+                                  <br><br><br>
+                              </form>
+                          </div>
+                      </div>
+                      
+                     
+                  </div>
+              </div>
+
+          </div> <!-- Content -->
+          
+      </div> <!-- wrapper -->
+
+  </body>
+</html>
+{% endblock %}

@@ -1,0 +1,140 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+
+      <div id="wrapper" class="homepage-1"> <!-- wrapper -->
+              
+          
+      <div class="newest">
+          <div class="container">
+              <div class="newest-content">
+                  <div class="newest-tab">
+                      <div id="myTabContent" class="tab-content">
+                          <div role="tabpanel" class="tab-pane fade in active" id="1" aria-labelledby="cat-1">
+                              <div class="row clearfix">
+                                {% if carts %}
+                                  <h1 align="center">My Cart</h1>
+                                  {% for i in carts %}
+
+                                  <div class="col-md-3 prdct-grid">
+                                      <div class="product-fade">
+									                       <div class="product-fade-wrap">
+                                          
+                                          <div class="item"><img src="{{i.product.product_image.url}}" alt="" class="img-responsive"></div>
+                                          
+                                          
+										                      <div class="product-fade-ct">
+                                            <div class="product-fade-control">
+                                             
+                                                <div class="to-right">
+                                                    <div id="product-control" class="owl-carousel owl-theme clearfix">
+                                                        <div class="item"><div class="bullets"></div></div>
+                                                        <div class="item"><div class="bullets"></div></div>
+                                                        <div class="item"><div class="bullets"></div></div>
+                                                        <div class="item"><div class="bullets"></div></div>
+                                                    </div>
+                                                </div>
+                                                  <div class="clearfix"></div>
+                                                  <a href="{% url 'product-details' pk=i.product.pk %}" class="btn btn-to-cart"><span class="bag"></span><span>Details</span><div class="clearfix"></div></a>
+                                              </div>
+            										            </div>
+									                       </div>
+                                      </div>
+                                      
+                                      <div class="product-name">
+                                          Name : {{i.product.product_name}}
+                                      </div>
+                                     
+                                      <div class="product-price">
+                                          Price : {{i.product_price}}
+                                      </div>
+                                      <div class="product-name">
+                                          <form method="post" action="{% url 'change-qty' %}">
+                                            {% csrf_token %}
+                                            Qty : <input type="number" name="product_qty" value="{{i.product_qty}}" min="1" max="10" onchange="this.form.submit();">
+                                            <input type="hidden" name="cid" value="{{i.pk}}">
+                                          </form>
+                                      </div>
+                                      <div class="product-name">
+                                          Total Price : {{i.total_price}}
+                                      </div>
+                                  </div>
+                                  
+                                  {% endfor %}
+                                {% else %}
+                                  <h1 align="center">No Products In Cart</h1>
+                                {% endif %}
+                              </div>
+                          </div>
+                          <h1>Net Price : {{net_price}}</h1>
+                          <form method="post">
+                            <input type="hidden" id="net_price" name="amount" value="{{net_price}}">
+                            <button type="button" class="btn btn-lg btn-primary" id="checkout-button">Checkout</button>
+                        </form>
+                          <div role="tabpanel" class="tab-pane fade" id="2" aria-labelledby="cat-2">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <p>....</p>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div role="tabpanel" class="tab-pane fade" id="3" aria-labelledby="cat-3">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <p>....</p>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                      </div>
+                      
+                  </div>
+              </div>
+          </div>
+      </div>              
+          </div> <!-- Content -->
+      </div> <!-- wrapper -->
+      <script type="text/javascript">
+
+var stripe = Stripe('pk_test_51MshH6SJuXwPfjjrrgxJ5tubbOgYAhRrqNcd4RDUSq1peWpIMZrjhIiTncSUWO9u6byeDf4KxdZPkFD4hU55mVOg00aRL5RT8x');
+var checkoutButton = document.getElementById('checkout-button');
+
+checkoutButton.addEventListener('click', function() { 
+ fetch('/create-checkout-session/', {
+ method: 'POST',
+    headers:{
+        'Accept': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest', //Necessary to work with request.is_ajax()
+
+    },
+    body: JSON.stringify({'post_data':'{{net_price}}'})
+ })
+ .then(function(response) {
+ return response.json();
+ })
+ .then(function(session) {
+ return stripe.redirectToCheckout({ sessionId: session.id });
+ })
+ .then(function(result) {
+ // If `redirectToCheckout` fails due to a browser or network
+ // error, you should display the localized error message to your
+ // customer using `error.message`.
+ if (result.error) {
+ alert(result.error.message);
+ }
+ })
+ .catch(function(error) {
+ console.error('Error:', error);
+ });
+ });
+ </script>
+  </body>
+</html>
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+
+      <div id="wrapper" class="homepage-1"> <!-- wrapper -->
+          
+          
+          <div id="content"> <!-- Content -->
+              <div class="page-title">
+                  <div class="container">
+                      <div class="page-title-inner">
+                          <h3>Register</h3>
+                          <div class="breadcumb"> <a href="">Home</a><span> / </span><span>Register</span></div>
+                          <div class="clearfix"></div>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="about-page">
+                  <div class="container">
+                      <div class="row">
+                         
+                          
+                          <div class="col-md-12 ct-form">
+                              <h3>Register Form</h3>
+                              {% if msg %}
+                                <b style="color: blue;">{{msg}}</b>
+                              {% endif %}
+                              <form class="contact-form" action="{% url 'register' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                     <select class="form-control" name="usertype" id="cf_name">
+                                        <option>---Select User Type---</option>
+                                        <option value="buyer">Buyer</option>
+                                        <option value="seller">Seller</option>
+                                     </select>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="cf_name">Your First Name*</label>
+                                      <input type="text" class="form-control" name="f_name" id="cf_name" placeholder="First Name">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="cf_name">Your Last Name*</label>
+                                      <input type="text" class="form-control" name="l_name" id="cf_name" placeholder="Last Name">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="cf_email">Your E-mail*</label>
+                                      <input type="email" class="form-control" name="email" id="cf_email" placeholder="Email">
+                                      <span id="email_error"></span>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label for="cf_subject">Mobile*</label>
+                                      <input type="text" class="form-control" name="mobile" id="cf_subject" placeholder="Mobile">
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label for="cf_message">Address*</label>
+                                      <textarea class="form-control" name="address" id="cf_message"></textarea>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="cf_subject">Password*</label>
+                                      <input type="password" class="form-control" name="password" id="cf_subject" placeholder="Password">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="cf_subject">Confirm Password*</label>
+                                      <input type="password" class="form-control" name="cpassword" id="cf_subject" placeholder="Confirm Password">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="cf_subject">Profile Picture*</label>
+                                      <input type="file" class="form-control" name="profile_picture" id="cf_subject">
+                                  </div>
+                                  <button type="submit" class="btn btn-blue">Register</button>
+                              </form>
+                          </div>
+                      </div>
+                      
+                     
+                  </div>
+              </div>
+
+          </div> <!-- Content -->
+          
+      </div> <!-- wrapper -->
+      <script>
+          $("#cf_email").change(function(){
+            var email=$(this).val();
+            //alert(email);
+            $.ajax({
+              url: '/ajax/validate_email/',
+              data: {
+                'email': email
+              },
+              dataType: 'json',
+              success: function (data) {
+                if (data.is_taken) {
+                  /*document.getElementById("email").style.border="5px solid red";*/
+                  document.getElementById("email_error").innerHTML="This Email ID Is Already Registered"
+                }else{
+                  document.getElementById("email_error").innerHTML="";
+                }
+              }
+            });
+          });
+
+        </script>
+  </body>
+</html>
+{% endblock %}

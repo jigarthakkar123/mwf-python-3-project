@@ -1,0 +1,88 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+
+      <div id="wrapper" class="homepage-1"> <!-- wrapper -->
+          
+          
+          <div id="content"> <!-- Content -->
+              <div class="page-title">
+                  <div class="container">
+                      <div class="page-title-inner">
+                          <h3>Login</h3>
+                          <div class="breadcumb"> <a href="">Home</a><span> / </span><span>Login</span></div>
+                          <div class="clearfix"></div>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="about-page">
+                  <div class="container">
+                      <div class="row">
+                         
+                          
+                          <div class="col-md-12 ct-form">
+                              <h3>Login Form</h3>
+                              {% if msg %}
+                                <b style="color: blue;">{{msg}}</b>
+                              {% endif %}
+                              <form class="contact-form" action="{% url 'login' %}" method="post">
+                                {% csrf_token %}
+                                  
+                                  <div class="form-group">
+                                      <label for="cf_email">Your E-mail*</label>
+                                      <input type="email" class="form-control" name="email" id="cf_email" placeholder="Email">
+                                      <span id="email_error"></span>
+                                  </div>
+
+                                  
+                                  <div class="form-group">
+                                      <label for="cf_subject">Password*</label>
+                                      <input type="password" class="form-control" name="password" id="cf_subject" placeholder="Password">
+                                  </div>
+                                  
+
+                                  <button type="submit" class="btn btn-blue">Login</button>
+                                  <br><br><br>
+                                  <a href="{% url 'forgot-password' %}">Forgot Password?</a>
+                              </form>
+                          </div>
+                      </div>
+                      
+                     
+                  </div>
+              </div>
+
+          </div> <!-- Content -->
+          
+      </div> <!-- wrapper -->
+      <script>
+          $("#cf_email").change(function(){
+            var email=$(this).val();
+            //alert(email);
+            $.ajax({
+              url: '/ajax/validate_email/',
+              data: {
+                'email': email
+              },
+              dataType: 'json',
+              success: function (data) {
+                if (!data.is_taken) {
+                  /*document.getElementById("email").style.border="5px solid red";*/
+                  document.getElementById("email_error").innerHTML="This Email ID Is Not Registered"
+                }else{
+                  document.getElementById("email_error").innerHTML="";
+                }
+              }
+            });
+          });
+
+        </script>
+  </body>
+</html>
+{% endblock %}

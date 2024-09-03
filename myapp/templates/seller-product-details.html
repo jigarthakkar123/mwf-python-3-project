@@ -1,0 +1,188 @@
+{% extends 'seller-header.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+  </head>
+  <body>
+
+      <div id="wrapper" class="homepage-1"> <!-- wrapper -->
+              
+            
+      <div class="newest">
+          <div class="container">
+              <div class="newest-content">
+                  <div class="newest-tab">
+                      <div id="myTabContent" class="tab-content">
+                          <div role="tabpanel" class="tab-pane fade in active" id="1" aria-labelledby="cat-1">
+                              <div class="row clearfix">
+
+                                  
+
+                                  <div class="col-md-3 prdct-grid">
+                                      <div class="product-fade">
+									                       <div class="product-fade-wrap">
+                                          
+                                          <div class="item"><img src="{{product.product_image.url}}" alt="" class="img-responsive"></div>
+                                          
+                                          
+										                      <div class="product-fade-ct">
+                                            <div class="product-fade-control">
+                                             
+                                                <div class="to-right">
+                                                    <div id="product-control" class="owl-carousel owl-theme clearfix">
+                                                        <div class="item"><div class="bullets"></div></div>
+                                                        <div class="item"><div class="bullets"></div></div>
+                                                        <div class="item"><div class="bullets"></div></div>
+                                                        <div class="item"><div class="bullets"></div></div>
+                                                    </div>
+                                                </div>
+                                                  <div class="clearfix"></div>
+                                                  
+                                              </div>
+            										            </div>
+									                       </div>
+                                      </div>
+                                      
+                                      <div class="product-name">
+                                          <a href="">Name : {{product.product_name}}</a>
+                                      </div>
+                                     
+                                      <div class="product-price">
+                                          Price : {{product.product_price}}
+                                      </div>
+                                      <div class="product-name">
+                                          Details : {{product.product_desc}}
+                                      </div>
+                                      <div class="product-name">
+                                          <a href="{% url 'seller-product-edit' pk=product.pk %}"><input type="button" value="EDIT" class="btn btn-primary"></a>
+                                          <a href="{% url 'seller-product-delete' pk=product.pk %}"><input type="button" value="DELETE" class="btn btn-danger"></a>
+                                      </div>
+                                  </div>
+                                  
+                                 
+
+
+                              </div>
+                          </div>
+                          
+                          <div role="tabpanel" class="tab-pane fade" id="2" aria-labelledby="cat-2">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <p>....</p>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div role="tabpanel" class="tab-pane fade" id="3" aria-labelledby="cat-3">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <p>....</p>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                      </div>
+                      
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+              <div class="content-offers">
+                  <div class="container">
+                      <div class="ct-offers">
+                          <div class="ct-offers-title">Tommy Hilfiger<br/>Women’s</div>
+                          <p>The generated Lorem Ipsum is therefore always free from repetition, injected humour</p>
+                          <a href="" class="btn btn-blue">Discover more Product</a>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="brands">
+                  <div class="container">
+                      <div class="brands-inner">
+                          <div class="brand-title">
+                              <span>Brands</span>
+                          </div>
+                          
+                          <div id="slider-home"> <!-- Slider -->
+                              <div id="brand-carousel" class="owl-carousel owl-theme">
+                                  <div class="item">
+                                      <img src="{% static 'images/brand-2.png' %}" alt="slide-1" class="img-responsive">
+                                  </div>
+                                  <div class="item">
+                                      <img src="{% static 'images/brand-3.png' %}" alt="slide-1" class="img-responsive">
+                                  </div>
+                                  <div class="item">
+                                      <img src="{% static 'images/brand-4.png' %}" alt="slide-1" class="img-responsive">
+                                  </div>
+                                  <div class="item">
+                                      <img src="{% static 'images/brand-1.png' %}" alt="slide-1" class="img-responsive">
+                                  </div>
+                                  <div class="item">
+                                      <img src="{% static 'images/brand-5.png' %}" alt="slide-1" class="img-responsive">
+                                  </div>
+                                  <div class="item">
+                                      <img src="{% static 'images/brand-2.png' %}" alt="slide-1" class="img-responsive">
+                                  </div>
+                                  <div class="item">
+                                      <img src="{% static 'images/brand-3.png' %}" alt="slide-1" class="img-responsive">
+                                  </div>
+                                  <div class="item">
+                                      <img src="{% static 'images/brand-4.png' %}" alt="slide-1" class="img-responsive">
+                                  </div>
+                                  <div class="item">
+                                      <img src="{% static 'images/brand-1.png' %}" alt="slide-1" class="img-responsive">
+                                  </div>
+                                  <div class="item">
+                                      <img src="{% static 'images/brand-5.png' %}" alt="slide-1" class="img-responsive">
+                                  </div>
+                              </div>
+                          </div> <!-- Slider -->
+                          
+                      </div>
+                  </div>
+              </div>
+              
+              
+              <div class="rec-blog">
+                  <div class="container">
+                      <div class="rec-blog-inner">
+                          <div class="blog-title">
+                              <span>The Blog</span>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-4 blog-ct">
+                                  <a href=""><img src="{% static 'images/rec-1.jpg' %}" alt="" class="img-responsive"></a>
+                                  <div class="blog-ct-title">
+                                      <a href="">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque !</a>
+                                      <span>May 11,2014</span>
+                                  </div>
+                              </div>
+                              <div class="col-md-4 blog-ct">
+                                  <a href=""><img src="{% static 'images/rec-2.jpg' %}" alt="" class="img-responsive"></a>
+                                  <div class="blog-ct-title">
+                                      <a href="">Voluptatem accusantium doloremque</a>
+                                      <span>May 11,2014</span>
+                                  </div>
+                              </div>
+                              <div class="col-md-4 blog-ct">
+                                  <a href=""><img src="{% static 'images/rec-3.jpg' %}" alt="" class="img-responsive"></a>
+                                  <div class="blog-ct-title">
+                                      <a href="">Voluptatem accusantium doloremque</a>
+                                      <span>May 11,2014</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+          </div> <!-- Content -->
+      </div> <!-- wrapper -->
+  </body>
+</html>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'seller-header.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+
+      <div id="wrapper" class="homepage-1"> <!-- wrapper -->
+          
+          
+          <div id="content"> <!-- Content -->
+              <div class="page-title">
+                  <div class="container">
+                      <div class="page-title-inner">
+                          <h3>Profile</h3>
+                          <div class="breadcumb"> <a href="">Home</a><span> / </span><span>Profile</span></div>
+                          <div class="clearfix"></div>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="about-page">
+                  <div class="container">
+                      <div class="row">
+                         
+                          
+                          <div class="col-md-12 ct-form">
+                              <h3>Profile</h3>
+                              {% if msg %}
+                                <b style="color: blue;">{{msg}}</b>
+                              {% endif %}
+                              <form class="contact-form" action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                  <div class="form-group">
+                                      <label for="cf_name">Your First Name*</label>
+                                      <input type="text" class="form-control" name="f_name" id="cf_name" value="{{user.fname}}">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="cf_name">Your Last Name*</label>
+                                      <input type="text" class="form-control" name="l_name" id="cf_name" value="{{user.lname}}">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="cf_email">Your E-mail*</label>
+                                      <input type="email" class="form-control" name="email" id="cf_email" value="{{user.email}}" readonly>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label for="cf_subject">Mobile*</label>
+                                      <input type="text" class="form-control" name="mobile" id="cf_subject" value="{{user.mobile}}">
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label for="cf_message">Address*</label>
+                                      <textarea class="form-control" name="address" id="cf_message">{{user.address}}</textarea>
+                                  </div>
+                                  <div class="form-group">
+                                      <img src="{{user.profile_picture.url}}" style="width:100px;height: 100px;border-radius: 50%;">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="cf_subject">Profile Picture*</label>
+                                      <input type="file" class="form-control" name="profile_picture" id="cf_subject">
+                                  </div>
+                                  <button type="submit" class="btn btn-blue">Update Profile</button>
+                              </form>
+                          </div>
+                      </div>
+                      
+                     
+                  </div>
+              </div>
+
+          </div> <!-- Content -->
+          
+      </div> <!-- wrapper -->
+
+  </body>
+</html>
+{% endblock %}
